@@ -1,0 +1,24 @@
+Modelo de dados
+
+-Usuario
+	Nome
+	Imagem
+	Email
+	Telefone
+	Tipo (Cliente / Empresa)
+	Ativacao SMS
+	
+	WEB (???)
+
+-Empresa
+	Nome
+	Categoria
+	Horários (Entrada - Saida - Intervalos de reserva)
+	Descricao
+
+-Reserva
+	Dia
+	Inicio
+	Fim
+	-Vincular Empresa
+	-Possibilidade de Review após atendimento
