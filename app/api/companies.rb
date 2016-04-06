@@ -12,11 +12,13 @@ class Companies < Grape::API
     params do
       requires :name, type: String
       requires :description, type: String
+      requires :location, type: String
     end
     post do
       Company.create!({
         name: params[:name],
-        description: params[:description]
+        description: params[:description],
+        location: params[:location]
         })
     end
 
@@ -33,14 +35,24 @@ class Companies < Grape::API
       requires :id, type: String
       requires :name, type:String
       requires :description, type:String
+      requires :location, type: String
     end
     put ':id' do
       Company.find(params[:id]).update({
         name:params[:name],
-        description:params[:description]
+        description:params[:description],
+        location: params[:location]
         })
     end
 
-
   end
+
+  resource :company do
+    get ":id/schedules" do
+      c = Company.new
+      c.compute_schedules(Time.now, Time.now + (10*60*60),60)
+
+    end
+  end
+
 end
