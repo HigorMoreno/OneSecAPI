@@ -6,7 +6,7 @@ class Employees < Grape::API
 
     desc "get employees from a specific company"
     get '/company/:id' do
-      
+
       Company.find(params[:id]).Employees
     end
 
@@ -46,15 +46,15 @@ class Employees < Grape::API
     params do
       requires :id, type: String
       requires :name, type:String
-      requires :description, type:String
-      requires :location, type: String
     end
     put ':id' do
-      Company.find(params[:id]).update({
-        name:params[:name],
-        description:params[:description],
-        location: params[:location]
+      Employee.find(params[:id]).update({
+        name:params[:name]
         })
+    end
+
+    get '/workday' do
+      WorkDay.getSchedule(15,0,60)
     end
 
     def default_serializer_options
