@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day: 
+  start_morning_time: 2016-04-06 22:47:49
+  end_morning_time: 2016-04-06 22:47:49
+  start_afternoon_time: 2016-04-06 22:47:49
+  end_afternoon_time: 2016-04-06 22:47:49
+  company_id: 
+
+two:
+  day: 
+  start_morning_time: 2016-04-06 22:47:49
+  end_morning_time: 2016-04-06 22:47:49
+  start_afternoon_time: 2016-04-06 22:47:49
+  end_afternoon_time: 2016-04-06 22:47:49
+  company_id: 

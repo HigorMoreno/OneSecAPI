@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406020406) do
+ActiveRecord::Schema.define(version: 20160409060408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,4 +24,28 @@ ActiveRecord::Schema.define(version: 20160406020406) do
     t.string   "location"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "employees", ["company_id"], name: "index_employees_on_company_id", using: :btree
+
+  create_table "work_days", force: :cascade do |t|
+    t.integer  "day"
+    t.time     "start_morning_time"
+    t.time     "end_morning_time"
+    t.time     "start_afternoon_time"
+    t.time     "end_afternoon_time"
+    t.integer  "employee_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "work_days", ["employee_id"], name: "index_work_days_on_employee_id", using: :btree
+
+  add_foreign_key "employees", "companies"
+  add_foreign_key "work_days", "employees"
 end

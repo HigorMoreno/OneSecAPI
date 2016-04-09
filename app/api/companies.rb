@@ -1,10 +1,12 @@
 class Companies < Grape::API
   format :json
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   resource :companies do
 
     desc "list companies"
     get do
+      #format.json { render json:Company.first.to}
       Company.all
     end
 
@@ -15,11 +17,24 @@ class Companies < Grape::API
       requires :location, type: String
     end
     post do
-      Company.create!({
+      company = Company.new({
         name: params[:name],
         description: params[:description],
         location: params[:location]
         })
+
+      
+      # params[:workdays].each do |w|
+      #   workday = WorkDay.new({
+      #     day: w.day,
+      #     start_morning_time: w.start_morning_time,
+      #     end_morning_time: w.end_morning_time,
+      #     start_afternoon_time: w.start_afternoon_time,
+      #     end_afternoon_time: w.end_afternoon_time,
+      #   }) 
+      #   company << workday
+      # end
+      company.save!
     end
 
     desc "deletes a company"
@@ -45,14 +60,10 @@ class Companies < Grape::API
         })
     end
 
-  end
-
-  resource :company do
-    get ":id/schedules" do
-      c = Company.new
-      c.compute_schedules(Time.now, Time.now + (10*60*60),60)
-
+    def default_serializer_options
+      {root: false}
     end
+
   end
 
 end

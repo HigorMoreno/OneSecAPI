@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+	has_many :Employees
 
 	def compute_schedules(start_time,end_time,interval)
 		schedule_list = []
