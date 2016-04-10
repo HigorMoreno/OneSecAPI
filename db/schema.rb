@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409060408) do
+ActiveRecord::Schema.define(version: 20160410040756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160409060408) do
     t.integer  "employee_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "interval"
   end
 
   add_index "work_days", ["employee_id"], name: "index_work_days_on_employee_id", using: :btree

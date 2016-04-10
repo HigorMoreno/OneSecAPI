@@ -42,21 +42,6 @@ class Employees < Grape::API
       Employee.find(params[:id]).destroy!
     end
 
-    desc "update a company"
-    params do
-      requires :id, type: String
-      requires :name, type:String
-    end
-    put ':id' do
-      Employee.find(params[:id]).update({
-        name:params[:name]
-        })
-    end
-
-    get '/workday' do
-      WorkDay.getSchedule(15,0,60)
-    end
-
     def default_serializer_options
       {root: false}
     end

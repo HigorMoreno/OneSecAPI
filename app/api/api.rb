@@ -3,4 +3,5 @@ class API < Grape::API
   version 'v1', using: :path
   mount Companies
   mount Employees
+  mount WorkDays
 end

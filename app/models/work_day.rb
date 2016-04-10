@@ -1,13 +1,10 @@
 class WorkDay < ActiveRecord::Base
 	belongs_to :Employee
-	attr_accessor :schedule
 
-	def WorkDay.getSchedule (employee_id,day,interval)
-		puts(employee_id)
-		workday = WorkDay.where(:employee_id => employee_id, :day => day).first
+	def getSchedule (interval)
 		schedule = []
-		WorkDay.computeSchedule(workday.start_morning_time, workday.end_morning_time, 60,schedule)
-		WorkDay.computeSchedule(workday.start_afternoon_time, workday.end_afternoon_time, 60, schedule)
+		WorkDay.computeSchedule(self.start_morning_time, self.end_morning_time, interval,schedule)
+		WorkDay.computeSchedule(self.start_afternoon_time, self.end_afternoon_time, interval, schedule)
 		schedule
 		
 	end
