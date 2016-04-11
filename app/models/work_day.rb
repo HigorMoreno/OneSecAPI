@@ -1,10 +1,10 @@
 class WorkDay < ActiveRecord::Base
 	belongs_to :Employee
 
-	def getSchedule (interval)
+	def getSchedule
 		schedule = []
-		WorkDay.computeSchedule(self.start_morning_time, self.end_morning_time, interval,schedule)
-		WorkDay.computeSchedule(self.start_afternoon_time, self.end_afternoon_time, interval, schedule)
+		WorkDay.computeSchedule(self.start_morning_time, self.end_morning_time, self.interval,schedule)
+		WorkDay.computeSchedule(self.start_afternoon_time, self.end_afternoon_time, self.interval, schedule)
 		schedule
 		
 	end
